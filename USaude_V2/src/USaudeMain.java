@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class USaudeMain {
@@ -18,11 +19,16 @@ public class USaudeMain {
 				commandRP(ui, command);
 			    break;
 			
+			case "LP":
+				commandLP(ui);
+			    break;
 			default:
 				System.out.println("Instrução invalida");	
 			}
 		}
 	}
+	
+// Chamada de Metodos
 	private static void commandRP(UInterface ui, String[] command) {
 		try {
 			String categoria = command[1];
@@ -42,9 +48,21 @@ public class USaudeMain {
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
 			System.out.println("Instrução invalida");
+		}	
+	}
+	
+	private static void commandLP(UInterface ui) {
+		ArrayList<String> out = ui.listarProfissionais();
+		if(out.isEmpty()) {
+			System.out.println("Sem profissionais registados.");
+		}
+		else {
+			for(String outhere:out) {
+				System.out.println(outhere);	
+			}
 		}
 		
+		
 	}
-
 }
-
+	

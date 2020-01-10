@@ -8,12 +8,17 @@ public class Profissional {
 		this.categoria = categoria;
 	}
 
-	public static String getNome() {
+	public String getNome() {
 		return nome;
 	}
 
 	public String getCategoria() {
 		return categoria;
+	}
+
+	@Override
+	public String toString() {
+		return categoria + " " + nome.replace("_", " ");
 	}
 
 }

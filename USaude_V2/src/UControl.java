@@ -1,11 +1,13 @@
-//import java.util.ArrayList;
 import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.Set;
 
 public class UControl implements UInterface{
 	
 	TreeMap<String,Profissional> arrMedicina = new TreeMap<String,Profissional>();
 	TreeMap<String,Profissional> arrEnfermagem = new TreeMap<String,Profissional>();
 	TreeMap<String,Profissional> arrAuxiliar = new TreeMap<String,Profissional>();
+
 	
 	@Override
 	public boolean isCategoria(String categoria) {
@@ -35,15 +37,41 @@ public class UControl implements UInterface{
 
 	@Override
 	public void registarProfissional(String categoria, String nome) {
-		Profissional Pro = new Profissional(categoria,nome);		
-		switch(String.contains(categoria)){
-			case "Medicina": arrMedicina.put(nome, Pro);
-			case "Enfermagem": arrEnfermagem.put(nome,Pro);
-			case "Auxiliar": arrMedicina.put(nome,Pro);
+		Profissional pro = new Profissional(categoria,nome);		
+		if (categoria.equals("Medicina")){
+			arrMedicina.put(nome, pro);
 		}
-		///kjahdfkjshd
+		else if (categoria.equals("Enfermagem")){
+			arrEnfermagem.put(nome, pro);
+		}
+		else {
+			arrAuxiliar.put(nome, pro);
+		}
 	}
-	
+
+	@Override
+	public ArrayList<String> listarProfissionais() {	
+		ArrayList<String> out = new ArrayList<String>();
+		Set<String> keys = arrMedicina.keySet();
+		for(String key: keys) {
+			Profissional s = arrMedicina.get(key);
+			out.add(s.toString());
+		}
+		Set<String> keys2 = arrEnfermagem.keySet();
+		for(String key: keys2) {
+			Profissional s = arrEnfermagem.get(key);
+			out.add(s.toString());
+		}
+		Set<String> keys3 = arrAuxiliar.keySet();
+		for(String key: keys3) {
+			Profissional s = arrAuxiliar.get(key);
+			out.add(s.toString());
+		}	
+		return out;
+		
+	}
+		
+
 	
 	
 	
