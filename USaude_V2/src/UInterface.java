@@ -5,5 +5,12 @@ public interface UInterface {
 	boolean isProfissional(String categoria, String nome);
 	void registarProfissional(String categoria, String profisisonal);
 	ArrayList<String> listarProfissionais();
-	
+	boolean isEtaria(String etaria);
+	boolean isUtente(String nome);
+	void registarUtente(String nome, String etaria);
+	ArrayList<String> listarUtentes();
+	boolean isFamilia(String nomeFamilia);
+	void registarFamilia(String string);
+	boolean utenteInFamilia(String nome, String nomeFamilia);
+	void associarFamilia(String nome, String nomeFamilia);
 }
