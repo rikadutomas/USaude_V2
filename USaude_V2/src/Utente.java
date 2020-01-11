@@ -17,7 +17,12 @@ public class Utente {
 
 //	@Override
 	public String toString() {
+		if (familia.equals("")) {
+			return etaria + " " + nome.replace("_", " ");
+		}
+		else {
 		return familia + " " + etaria + " " + nome.replace("_", " ");
+		}
 	}
 
 	public String getNome() {

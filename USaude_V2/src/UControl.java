@@ -90,7 +90,6 @@ public class UControl implements UInterface{
 	public void registarUtente(String nome, String etaria) {
 		Utente utente = new Utente(nome,etaria);
 		arrUtente.put(nome, utente);
-		System.out.println("xxx");
 	}
 
 	@Override

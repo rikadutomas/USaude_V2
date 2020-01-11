@@ -132,11 +132,11 @@ public class USaudeMain {
 		if (ui.isFamilia(nomeFamilia)) {
 			if(ui.isUtente(nome)) {
 				if(ui.utenteInFamilia(nome,nomeFamilia)) {
-					ui.associarFamilia(nome,nomeFamilia);
-					System.out.println("Utente associado a família.");
+					System.out.println("Utente pertence a família.");					
 				}
 				else {
-					System.out.println("Utente pertence a família.");
+					ui.associarFamilia(nome,nomeFamilia);
+					System.out.println("Utente associado a família.");
 				}
 			}
 			else {
