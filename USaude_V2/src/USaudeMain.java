@@ -22,8 +22,26 @@ public class USaudeMain {
 			case "LP":
 				commandLP(ui);
 			    break;
+			    
+			case "RU":
+				commandRU(ui, command);
+			    break;    
+			
+			case "LU":
+				commandLU(ui);
+			    break;    
+			
+			case "RF":
+				commandRF(ui,command);
+			    break;    
+			
+			case "AF":
+				commandAF(ui,command);
+			    break;    
+			    
+			    
 			default:
-				System.out.println("Instrução invalida");	
+				System.out.println("Instrução inválida.");	
 			}
 		}
 	}
@@ -47,7 +65,7 @@ public class USaudeMain {
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Instrução invalida");
+			System.out.println("Instrução inválida.");
 		}	
 	}
 	
@@ -60,9 +78,76 @@ public class USaudeMain {
 			for(String outhere:out) {
 				System.out.println(outhere);	
 			}
-		}
-		
-		
+		}		
 	}
+
+	private static void commandRU(UInterface ui, String[] command) {
+		try {
+			String nome = command[1];
+			String etaria = command[2];
+			if (ui.isEtaria(etaria)) {
+				if(ui.isUtente(nome)) {
+					System.out.println("Utente existente.");
+				}
+				else {
+					ui.registarUtente(nome,etaria);
+					System.out.println("Utente registado com sucesso.");
+				}
+			}
+			else {
+				System.out.println("Faixa etária inexistente.");
+			}
+		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Instrução inválida");
+		}	
+	}
+
+	private static void commandLU(UInterface ui) {
+		ArrayList<String> out = ui.listarUtentes();
+		if(out.isEmpty()) {
+			System.out.println("Sem utentes registados.");
+		}
+		else {
+			for(String outhere:out) {
+				System.out.println(outhere);	
+			}
+		}		
+	}
+
+	private static void commandRF(UInterface ui, String[] command) {
+		if (ui.isFamilia(command[1])) {
+			System.out.println("Família existente.");
+		}
+		else {
+			ui.registarFamilia(command[1]);
+			System.out.println("Família registada com sucesso.");
+		}
+	}
+
+	private static void commandAF(UInterface ui, String[] command) {
+		String nome = command[1];
+		String nomeFamilia = command[2];
+		
+		if (ui.isFamilia(nomeFamilia)) {
+			if(ui.isUtente(nome)) {
+				if(ui.utenteInFamilia(nome,nomeFamilia)) {
+					ui.associarFamilia(nome,nomeFamilia);
+					System.out.println("Utente associado a família.");
+				}
+				else {
+					System.out.println("Utente pertence a família.");
+				}
+			}
+			else {
+				System.out.println("Utente inexistente.");
+			}			
+		}
+		else {
+			System.out.println("Família inexistente.");
+		}
+	}
+
+
 }
 	
