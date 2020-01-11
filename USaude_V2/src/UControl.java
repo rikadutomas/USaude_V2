@@ -6,22 +6,21 @@ import java.util.List;
 
 public class UControl implements UInterface{
 	
-	TreeMap<String,Profissional> arrMedicina = new TreeMap<String,Profissional>();
-	TreeMap<String,Profissional> arrEnfermagem = new TreeMap<String,Profissional>();
-	TreeMap<String,Profissional> arrAuxiliar = new TreeMap<String,Profissional>();
-	TreeMap<String,Utente> arrUtente = new TreeMap<String,Utente>();
-	TreeMap<String,Familia> arrFamilia = new TreeMap<String,Familia>();
+	private TreeMap<String,Profissional> arrMedicina = new TreeMap<String,Profissional>();
+	private TreeMap<String,Profissional> arrEnfermagem = new TreeMap<String,Profissional>();
+	private TreeMap<String,Profissional> arrAuxiliar = new TreeMap<String,Profissional>();
+	private TreeMap<String,Utente> arrUtente = new TreeMap<String,Utente>();
+	private TreeMap<String,Familia> arrFamilia = new TreeMap<String,Familia>();
+	private TreeMap<String,Cuidado> arrMarcacoes = new TreeMap<String,Cuidado>();
 	
-	List<String> arrFaixaEtaria = Arrays.asList(new String[]{"Jovem", "Adulto","Idoso"});
+	
+	private List<String> arrFaixaEtaria = Arrays.asList(new String[]{"Jovem", "Adulto","Idoso"});
+	private List<String> arrCategoria = Arrays.asList(new String[]{"Medicina", "Enfermage","Auxiliar"});
+	private List<String> arrServico = Arrays.asList(new String[]{"Consulta", "PequenaCirurgia","Enfermagem"});
 	
 	@Override
 	public boolean isCategoria(String categoria) {
-		if (categoria.equals("Medicina") || categoria.equals("Enfermagem") || categoria.equals("Auxiliar")) {
-			return true;
-		}
-		else {
-			return false;
-		}		
+		return arrCategoria.contains(categoria);
 	}
 
 	@Override
@@ -37,7 +36,6 @@ public class UControl implements UInterface{
 		else {
 			return arrAuxiliar.containsKey(nome);
 		}
-
 	}
 
 	@Override
@@ -72,8 +70,7 @@ public class UControl implements UInterface{
 			Profissional s = arrAuxiliar.get(key);
 			out.add(s.toString());
 		}	
-		return out;
-		
+		return out;	
 	}
 
 	@Override
@@ -95,20 +92,30 @@ public class UControl implements UInterface{
 	@Override
 	public ArrayList<String> listarUtentes() {
 		ArrayList <String> out = new ArrayList<String>();
-		Set <String>keys = arrUtente.keySet();
-		for (String key:keys) {		
-//			String nomeFamilia = key;
-//			Familia x = arrFamilia.get(key);
-			Utente x = arrUtente.get(key);
-//			for(Utente utente: x.listaUtentes()) {
-//				out.add(utente.toString());
-//			}	
-			out.add(x.toString());
+		for (String etaria: arrFaixaEtaria) {
+			Set <String>keys = arrFamilia.keySet();
+			for (String key:keys) {		
+				String nomeFamilia = key;
+				Familia familia = arrFamilia.get(key);
+				for(Utente utente: familia.listaUtentes()) {
+					if(utente.getEtaria().equals(etaria)) {
+						out.add(utente.toString());
+					}
+				}	
+			}
+			Set <String>keys2 = arrUtente.keySet();
+			for (String key:keys2) {		
+				Utente utente = arrUtente.get(key);
+				if (utente.getFamilia().equals("")) {
+					if(utente.getEtaria().equals(etaria)) {
+						out.add(utente.toString());
+					}				
+				}
+			}
 		}
-
 		return out;
 	}
-
+	
 	@Override
 	public boolean isFamilia(String nomeFamilia) {
 		return arrFamilia.containsKey(nomeFamilia);
@@ -133,8 +140,78 @@ public class UControl implements UInterface{
 		utente.setFamilia(nomeFamilia);
 		familia.adicionar(utente);
 	}
-		
 
+	
+	@Override
+	public boolean notFamilia(String nome) {
+		Utente utente = arrUtente.get(nome);
+		return utente.notFamilia();
+	}
+
+	@Override
+	public void desassociarFamilia(String nome) {
+		Utente utente = arrUtente.get(nome);
+		String nomeFamilia = utente.getFamilia();
+		Familia familia =arrFamilia.get(nomeFamilia);
+		familia.remover(utente);
+		arrUtente.remove(nome);
+		utente.setFamilia("");
+		arrUtente.put(nome, utente);	
+	}
+
+	@Override
+	public ArrayList<String> mostrarFamilia(String nomeFamilia) {
+		Familia familia = arrFamilia.get(nomeFamilia);
+		ArrayList <String> out = new ArrayList<String>();
+		if (familia==null){
+			out.add("");
+			return out;
+		}
+		TreeMap<String,Utente> membros = familia.getMembros();
+		for (String etaria:arrFaixaEtaria) {
+			for (String nome:membros.keySet()) {
+				Utente utente = arrUtente.get(nome);
+				if(utente.getEtaria().equals(etaria)) {
+					out.add(utente.getEtaria() + " " + utente.getNome().replace("_", " "));
+				}
+			}	
+		}		
+		if (out.isEmpty()) {
+			out.add("");
+		}
+		return out;
+	}
+
+	@Override
+	public ArrayList<String> listarFamilias() {		
+		ArrayList<String> out = new ArrayList<String>();		
+		if(arrFamilia.isEmpty()) {out.add("");}
+		Set<String>keys = arrFamilia.keySet();
+		for(String key:keys) {
+			out.add(key);
+		}
+		return out;
+	}
+
+	@Override
+	public int iniciarMarcacao(String nome) {
+		int flag = 0;
+		if (arrUtente.containsKey(nome)) {return flag=1;}
+		else {
+			return flag=0;
+		}		
+	}
+
+	@Override
+	public int marcacao(String[] command) {
+		if(command.length > 1 ) {}
+		return 0;
+	}
+	
+
+
+	
+	
 	
 	
 	

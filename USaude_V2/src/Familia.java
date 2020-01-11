@@ -41,4 +41,13 @@ public class Familia {
 	public Utente getUtente() {
 		return utente;
 	}
+
+	public TreeMap<String, Utente> getMembros() {
+		if (membros==null) {
+			return null;
+		}
+		else {
+			return membros;
+		}
+	}
 }

@@ -20,5 +20,4 @@ public class Profissional {
 	public String toString() {
 		return categoria + " " + nome.replace("_", " ");
 	}
-
 }

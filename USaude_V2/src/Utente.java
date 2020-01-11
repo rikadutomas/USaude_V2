@@ -15,7 +15,6 @@ public class Utente {
 		this.familia = familia;
 	}
 
-//	@Override
 	public String toString() {
 		if (familia.equals("")) {
 			return etaria + " " + nome.replace("_", " ");
@@ -36,6 +35,8 @@ public class Utente {
 	public String getFamilia() {
 		return familia;
 	}
-	
+	public boolean notFamilia() {
+		return familia.equals("");
+	}
 
 }
