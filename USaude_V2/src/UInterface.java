@@ -17,4 +17,6 @@ public interface UInterface {
 	void desassociarFamilia(String nome);
 	ArrayList<String> mostrarFamilia(String nomeFamilia);
 	ArrayList<String> listarFamilias();
+	int iniciarMarcacao(String nome);
+	int marcacao(String[] command);
 }

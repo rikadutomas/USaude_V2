@@ -53,6 +53,11 @@ public class USaudeMain {
 			case "LF":
 				commandLF(ui);
 			    break;    		    
+			
+			case "MC":
+				commandMC(ui,command);
+			    break;    
+			    
 			    
 			default:
 				System.out.println("Instrução inválida.");	
@@ -224,9 +229,25 @@ public class USaudeMain {
 		}
 	}
 	
+	private static void commandMC(UInterface ui,String[] command) {
+		int flag = 0;
+		String nome = command[1];
+		flag = ui.iniciarMarcacao(nome);
+		//strSender();
+	}
 	
-	
-	
+	private static void strSender(UInterface ui) {
+		Scanner scanner = new Scanner(System.in);
+		while(scanner.hasNextLine()) {
+			String input = scanner.nextLine();
+			if(input.isBlank()) {
+				scanner.close();
+				break;
+			}
+			String command[] = input.split(" ");
+			ui.marcacao(command);
+		}
+	}
 	
 	
 	

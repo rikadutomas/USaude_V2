@@ -6,14 +6,18 @@ import java.util.List;
 
 public class UControl implements UInterface{
 	
-	TreeMap<String,Profissional> arrMedicina = new TreeMap<String,Profissional>();
-	TreeMap<String,Profissional> arrEnfermagem = new TreeMap<String,Profissional>();
-	TreeMap<String,Profissional> arrAuxiliar = new TreeMap<String,Profissional>();
-	TreeMap<String,Utente> arrUtente = new TreeMap<String,Utente>();
-	TreeMap<String,Familia> arrFamilia = new TreeMap<String,Familia>();
+	private TreeMap<String,Profissional> arrMedicina = new TreeMap<String,Profissional>();
+	private TreeMap<String,Profissional> arrEnfermagem = new TreeMap<String,Profissional>();
+	private TreeMap<String,Profissional> arrAuxiliar = new TreeMap<String,Profissional>();
+	private TreeMap<String,Utente> arrUtente = new TreeMap<String,Utente>();
+	private TreeMap<String,Familia> arrFamilia = new TreeMap<String,Familia>();
+	private TreeMap<String,Cuidado> arrMarcacoes = new TreeMap<String,Cuidado>();
 	
-	List<String> arrFaixaEtaria = Arrays.asList(new String[]{"Jovem", "Adulto","Idoso"});
-	List<String> arrCategoria = Arrays.asList(new String[]{"Medicina", "Enfermage","Auxiliar"});
+	
+	private List<String> arrFaixaEtaria = Arrays.asList(new String[]{"Jovem", "Adulto","Idoso"});
+	private List<String> arrCategoria = Arrays.asList(new String[]{"Medicina", "Enfermage","Auxiliar"});
+	private List<String> arrServico = Arrays.asList(new String[]{"Consulta", "PequenaCirurgia","Enfermagem"});
+	
 	@Override
 	public boolean isCategoria(String categoria) {
 		return arrCategoria.contains(categoria);
@@ -32,7 +36,6 @@ public class UControl implements UInterface{
 		else {
 			return arrAuxiliar.containsKey(nome);
 		}
-
 	}
 
 	@Override
@@ -67,8 +70,7 @@ public class UControl implements UInterface{
 			Profissional s = arrAuxiliar.get(key);
 			out.add(s.toString());
 		}	
-		return out;
-		
+		return out;	
 	}
 
 	@Override
@@ -190,7 +192,22 @@ public class UControl implements UInterface{
 		}
 		return out;
 	}
-		
+
+	@Override
+	public int iniciarMarcacao(String nome) {
+		int flag = 0;
+		if (arrUtente.containsKey(nome)) {return flag=1;}
+		else {
+			return flag=0;
+		}		
+	}
+
+	@Override
+	public int marcacao(String[] command) {
+		if(command.length > 1 ) {}
+		return 0;
+	}
+	
 
 
 	
