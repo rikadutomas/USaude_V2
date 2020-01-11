@@ -36,6 +36,8 @@ public class Utente {
 	public String getFamilia() {
 		return familia;
 	}
-	
+	public boolean notFamilia() {
+		return familia.equals("");
+	}
 
 }

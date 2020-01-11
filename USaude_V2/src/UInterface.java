@@ -13,4 +13,6 @@ public interface UInterface {
 	void registarFamilia(String string);
 	boolean utenteInFamilia(String nome, String nomeFamilia);
 	void associarFamilia(String nome, String nomeFamilia);
+	boolean notFamilia(String nome);
+	void desassociarFamilia(String nome);
 }

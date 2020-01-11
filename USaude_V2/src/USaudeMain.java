@@ -15,6 +15,10 @@ public class USaudeMain {
 			switch(command[0]) {
 			
 			// Registar Profissional
+			case "XX":
+				commandXX();
+				break;
+				
 			case "RP":
 				commandRP(ui, command);
 			    break;
@@ -38,7 +42,10 @@ public class USaudeMain {
 			case "AF":
 				commandAF(ui,command);
 			    break;    
-			    
+			 
+			case "DF":
+				commandDF(ui,command);
+			    break;    
 			    
 			default:
 				System.out.println("Instrução inválida.");	
@@ -116,37 +123,99 @@ public class USaudeMain {
 	}
 
 	private static void commandRF(UInterface ui, String[] command) {
-		if (ui.isFamilia(command[1])) {
-			System.out.println("Família existente.");
+		try {
+			if (ui.isFamilia(command[1])) {
+				System.out.println("Família existente.");
+			}
+			else {
+				ui.registarFamilia(command[1]);
+				System.out.println("Família registada com sucesso.");
+			}
 		}
-		else {
-			ui.registarFamilia(command[1]);
-			System.out.println("Família registada com sucesso.");
-		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Instrução inválida.");
+		}	
 	}
 
 	private static void commandAF(UInterface ui, String[] command) {
-		String nome = command[1];
-		String nomeFamilia = command[2];
-		
-		if (ui.isFamilia(nomeFamilia)) {
-			if(ui.isUtente(nome)) {
-				if(ui.utenteInFamilia(nome,nomeFamilia)) {
-					System.out.println("Utente pertence a família.");					
+		try {
+			String nome = command[1];
+			String nomeFamilia = command[2];
+			
+			if (ui.isFamilia(nomeFamilia)) {
+				if(ui.isUtente(nome)) {
+					if(ui.utenteInFamilia(nome,nomeFamilia)) {
+						System.out.println("Utente pertence a família.");					
+					}
+					else {
+						ui.associarFamilia(nome,nomeFamilia);
+						System.out.println("Utente associado a família.");
+					}
 				}
 				else {
-					ui.associarFamilia(nome,nomeFamilia);
-					System.out.println("Utente associado a família.");
+					System.out.println("Utente inexistente.");
+				}			
+			}
+			else {
+				System.out.println("Família inexistente.");
+			}
+		
+		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Instrução inválida.");
+		}	
+	}
+
+	private static void commandDF(UInterface ui, String[] command) {
+		try {
+			String nome = command[1];
+			if(ui.isUtente(nome)) {
+				if (ui.notFamilia(nome)){
+					System.out.println("Utente não pertence a família.");
+				}
+				else {
+					ui.desassociarFamilia(nome);
+					System.out.println("Utente desassociado de família.");
 				}
 			}
 			else {
 				System.out.println("Utente inexistente.");
-			}			
+			}				
 		}
-		else {
-			System.out.println("Família inexistente.");
-		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Instrução inválida.");
+		}	
+		
 	}
+	//// COMMANDO DE SEPARACAO DE TESTES	
+	private static void commandXX() {
+		System.out.println("---------------------------------------");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 }

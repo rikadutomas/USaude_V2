@@ -95,20 +95,30 @@ public class UControl implements UInterface{
 	@Override
 	public ArrayList<String> listarUtentes() {
 		ArrayList <String> out = new ArrayList<String>();
-		Set <String>keys = arrUtente.keySet();
-		for (String key:keys) {		
-//			String nomeFamilia = key;
-//			Familia x = arrFamilia.get(key);
-			Utente x = arrUtente.get(key);
-//			for(Utente utente: x.listaUtentes()) {
-//				out.add(utente.toString());
-//			}	
-			out.add(x.toString());
+		for (String etaria: arrFaixaEtaria) {
+			Set <String>keys = arrFamilia.keySet();
+			for (String key:keys) {		
+				String nomeFamilia = key;
+				Familia familia = arrFamilia.get(key);
+				for(Utente utente: familia.listaUtentes()) {
+					if(utente.getEtaria().equals(etaria)) {
+						out.add(utente.toString());
+					}
+				}	
+			}
+			Set <String>keys2 = arrUtente.keySet();
+			for (String key:keys2) {		
+				Utente utente = arrUtente.get(key);
+				if (utente.getFamilia().equals("")) {
+					if(utente.getEtaria().equals(etaria)) {
+						out.add(utente.toString());
+					}				
+				}
+			}
 		}
-
 		return out;
 	}
-
+	
 	@Override
 	public boolean isFamilia(String nomeFamilia) {
 		return arrFamilia.containsKey(nomeFamilia);
@@ -133,8 +143,29 @@ public class UControl implements UInterface{
 		utente.setFamilia(nomeFamilia);
 		familia.adicionar(utente);
 	}
+
+	
+	@Override
+	public boolean notFamilia(String nome) {
+		Utente utente = arrUtente.get(nome);
+		return utente.notFamilia();
+	}
+
+	@Override
+	public void desassociarFamilia(String nome) {
+		Utente utente = arrUtente.get(nome);
+		String nomeFamilia = utente.getFamilia();
+		Familia familia =arrFamilia.get(nomeFamilia);
+		familia.remover(utente);
+		arrUtente.remove(nome);
+		utente.setFamilia("");
+		arrUtente.put(nome, utente);	
+	}
 		
 
+
+	
+	
 	
 	
 	
