@@ -13,15 +13,10 @@ public class UControl implements UInterface{
 	TreeMap<String,Familia> arrFamilia = new TreeMap<String,Familia>();
 	
 	List<String> arrFaixaEtaria = Arrays.asList(new String[]{"Jovem", "Adulto","Idoso"});
-	
+	List<String> arrCategoria = Arrays.asList(new String[]{"Medicina", "Enfermage","Auxiliar"});
 	@Override
 	public boolean isCategoria(String categoria) {
-		if (categoria.equals("Medicina") || categoria.equals("Enfermagem") || categoria.equals("Auxiliar")) {
-			return true;
-		}
-		else {
-			return false;
-		}		
+		return arrCategoria.contains(categoria);
 	}
 
 	@Override
@@ -160,6 +155,40 @@ public class UControl implements UInterface{
 		arrUtente.remove(nome);
 		utente.setFamilia("");
 		arrUtente.put(nome, utente);	
+	}
+
+	@Override
+	public ArrayList<String> mostrarFamilia(String nomeFamilia) {
+		Familia familia = arrFamilia.get(nomeFamilia);
+		ArrayList <String> out = new ArrayList<String>();
+		if (familia==null){
+			out.add("");
+			return out;
+		}
+		TreeMap<String,Utente> membros = familia.getMembros();
+		for (String etaria:arrFaixaEtaria) {
+			for (String nome:membros.keySet()) {
+				Utente utente = arrUtente.get(nome);
+				if(utente.getEtaria().equals(etaria)) {
+					out.add(utente.getEtaria() + " " + utente.getNome().replace("_", " "));
+				}
+			}	
+		}		
+		if (out.isEmpty()) {
+			out.add("");
+		}
+		return out;
+	}
+
+	@Override
+	public ArrayList<String> listarFamilias() {		
+		ArrayList<String> out = new ArrayList<String>();		
+		if(arrFamilia.isEmpty()) {out.add("");}
+		Set<String>keys = arrFamilia.keySet();
+		for(String key:keys) {
+			out.add(key);
+		}
+		return out;
 	}
 		
 

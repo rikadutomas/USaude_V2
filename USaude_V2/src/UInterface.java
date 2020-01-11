@@ -15,4 +15,6 @@ public interface UInterface {
 	void associarFamilia(String nome, String nomeFamilia);
 	boolean notFamilia(String nome);
 	void desassociarFamilia(String nome);
+	ArrayList<String> mostrarFamilia(String nomeFamilia);
+	ArrayList<String> listarFamilias();
 }

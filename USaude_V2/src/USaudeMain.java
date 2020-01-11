@@ -46,6 +46,13 @@ public class USaudeMain {
 			case "DF":
 				commandDF(ui,command);
 			    break;    
+			
+			case "MF":
+				commandMF(ui,command);
+			    break;    
+			case "LF":
+				commandLF(ui);
+			    break;    		    
 			    
 			default:
 				System.out.println("Instrução inválida.");	
@@ -192,9 +199,30 @@ public class USaudeMain {
 		System.out.println("---------------------------------------");
 	}
 	
+	private static void commandMF(UInterface ui,String[] command) {
+		try {
+			for (String nomeFamilia: ui.mostrarFamilia(command[1])) {
+				if (nomeFamilia.equals("")){
+					System.out.println("Família inexistente.");
+				}
+				System.out.println(nomeFamilia);
+			}
+		}
+		catch(ArrayIndexOutOfBoundsException e) {
+				System.out.println("Instrução inválida.");
+		}	
+	}
 	
-	
-	
+	private static void commandLF(UInterface ui) {
+		for (String nomeFamilia: ui.listarFamilias()) {
+			if (nomeFamilia.equals("")){
+				System.out.println("Família inexistente.");
+			}
+			else {
+			System.out.println(nomeFamilia);
+			}
+		}
+	}
 	
 	
 	
