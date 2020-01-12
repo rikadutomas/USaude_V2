@@ -193,18 +193,11 @@ public class UControl implements UInterface{
 		return out;
 	}
 
-	@Override
-	public int iniciarMarcacao(String nome) {
-		int flag = 0;
-		if (arrUtente.containsKey(nome)) {return flag=1;}
-		else {
-			return flag=0;
-		}		
-	}
 
 	@Override
-	public int marcacao(String[] command) {
-		if(command.length > 1 ) {}
+	public int marcacao(ArrayList<String> command) {
+		
+		
 		return 0;
 	}
 	

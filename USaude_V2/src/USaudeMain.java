@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class USaudeMain {
@@ -60,7 +61,7 @@ public class USaudeMain {
 			    
 			    
 			default:
-				System.out.println("Instrução inválida.");	
+				System.out.println("Instruï¿½ï¿½o invï¿½lida.");	
 			}
 		}
 	}
@@ -84,7 +85,7 @@ public class USaudeMain {
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Instrução inválida.");
+			System.out.println("Instruï¿½ï¿½o invï¿½lida.");
 		}	
 	}
 	
@@ -114,11 +115,11 @@ public class USaudeMain {
 				}
 			}
 			else {
-				System.out.println("Faixa etária inexistente.");
+				System.out.println("Faixa etï¿½ria inexistente.");
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Instrução inválida");
+			System.out.println("Instruï¿½ï¿½o invï¿½lida");
 		}	
 	}
 
@@ -137,15 +138,15 @@ public class USaudeMain {
 	private static void commandRF(UInterface ui, String[] command) {
 		try {
 			if (ui.isFamilia(command[1])) {
-				System.out.println("Família existente.");
+				System.out.println("Famï¿½lia existente.");
 			}
 			else {
 				ui.registarFamilia(command[1]);
-				System.out.println("Família registada com sucesso.");
+				System.out.println("Famï¿½lia registada com sucesso.");
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Instrução inválida.");
+			System.out.println("Instruï¿½ï¿½o invï¿½lida.");
 		}	
 	}
 
@@ -157,11 +158,11 @@ public class USaudeMain {
 			if (ui.isFamilia(nomeFamilia)) {
 				if(ui.isUtente(nome)) {
 					if(ui.utenteInFamilia(nome,nomeFamilia)) {
-						System.out.println("Utente pertence a família.");					
+						System.out.println("Utente pertence a famï¿½lia.");					
 					}
 					else {
 						ui.associarFamilia(nome,nomeFamilia);
-						System.out.println("Utente associado a família.");
+						System.out.println("Utente associado a famï¿½lia.");
 					}
 				}
 				else {
@@ -169,12 +170,12 @@ public class USaudeMain {
 				}			
 			}
 			else {
-				System.out.println("Família inexistente.");
+				System.out.println("Famï¿½lia inexistente.");
 			}
 		
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Instrução inválida.");
+			System.out.println("Instruï¿½ï¿½o invï¿½lida.");
 		}	
 	}
 
@@ -183,11 +184,11 @@ public class USaudeMain {
 			String nome = command[1];
 			if(ui.isUtente(nome)) {
 				if (ui.notFamilia(nome)){
-					System.out.println("Utente não pertence a família.");
+					System.out.println("Utente nï¿½o pertence a famï¿½lia.");
 				}
 				else {
 					ui.desassociarFamilia(nome);
-					System.out.println("Utente desassociado de família.");
+					System.out.println("Utente desassociado de famï¿½lia.");
 				}
 			}
 			else {
@@ -195,7 +196,7 @@ public class USaudeMain {
 			}				
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Instrução inválida.");
+			System.out.println("Instruï¿½ï¿½o invï¿½lida.");
 		}	
 		
 	}
@@ -208,20 +209,20 @@ public class USaudeMain {
 		try {
 			for (String nomeFamilia: ui.mostrarFamilia(command[1])) {
 				if (nomeFamilia.equals("")){
-					System.out.println("Família inexistente.");
+					System.out.println("Famï¿½lia inexistente.");
 				}
 				System.out.println(nomeFamilia);
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-				System.out.println("Instrução inválida.");
+				System.out.println("Instruï¿½ï¿½o invï¿½lida.");
 		}	
 	}
 	
 	private static void commandLF(UInterface ui) {
 		for (String nomeFamilia: ui.listarFamilias()) {
 			if (nomeFamilia.equals("")){
-				System.out.println("Família inexistente.");
+				System.out.println("Famï¿½lia inexistente.");
 			}
 			else {
 			System.out.println(nomeFamilia);
@@ -230,13 +231,14 @@ public class USaudeMain {
 	}
 	
 	private static void commandMC(UInterface ui,String[] command) {
+		List<String> newCommands = new ArrayList<String>();
+		for (String c: command) {
+			newCommands.add(c);
+		}
 		int flag = 0;
 		String nome = command[1];
-		flag = ui.iniciarMarcacao(nome);
-		//strSender();
-	}
-	
-	private static void strSender(UInterface ui) {
+		//flag = ui.iniciarMarcacao(nome);
+		
 		Scanner scanner = new Scanner(System.in);
 		while(scanner.hasNextLine()) {
 			String input = scanner.nextLine();
@@ -244,8 +246,12 @@ public class USaudeMain {
 				scanner.close();
 				break;
 			}
-			String command[] = input.split(" ");
-			ui.marcacao(command);
+			String[] tempS = input.split(" ");
+			for (String s : tempS) {
+				newCommands.add(s);
+			}
+			ui.marcacao(newCommands);
+
 		}
 	}
 	

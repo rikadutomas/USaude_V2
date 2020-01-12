@@ -18,5 +18,5 @@ public interface UInterface {
 	ArrayList<String> mostrarFamilia(String nomeFamilia);
 	ArrayList<String> listarFamilias();
 	int iniciarMarcacao(String nome);
-	int marcacao(String[] command);
+	int marcacao(ArrayList<String> command);
 }
