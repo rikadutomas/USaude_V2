@@ -1,0 +1,53 @@
+RU Ricardo_Tomas Adulto
+RU Rute_Ferreira Adulto
+RU Daniela_Tomas Jovem
+RU Rafaela_Tomas Jovem
+RU Palmira_Francisco Idoso
+RU Joaquim_Tomas Idoso
+RU Manuel_Mario Idoso
+RU Ana_Maria Idoso
+RU Carlos_Henriques Adulto
+RU Lena_Ferreira Adulto
+RU Carlos_Henriques_Jr Jovem
+RU Marisa_Tome Adulto
+RU Rui_Costa Adulto
+RU Rita_Carvalho Jovem
+RU Tiago_Migueis Jovem
+RU Vasco_Santos Idoso
+RU Ricardo_Pinto Idoso
+XX
+RF Tomas
+RF Ferreira
+AF Ricardo_Tomas Tomas
+AF Rute_Ferreira Tomas
+AF Daniela_Tomas Tomas
+AF Rafaela_Tomas Tomas
+AF Palmira_Francisco Tomas
+AF Joaquim_Tomas Tomas
+AF Manuel_Mario Ferreira
+AF Ana_Maria Ferreira
+AF Carlos_Henriques Ferreira
+AF Lena_Ferreira Ferreira
+AF Carlos_Henriques_Jr Ferreira
+RP Medicina Joao_Santos
+RP Medicina Rita_Azevedo
+RP Medicina Teresa_Salgueiro
+RP Medicina Alexandre_Cardoso
+RP Enfermagem Joao_Cardoso
+RP Enfermagem Henrique_Carvalho
+RP Enfermagem Anibal_Jacinto
+RP Enfermagem Alberto_Santos
+RP Enfermagem Zair_Zumbaka
+RP Auxiliar Mena_Carmo
+RP Auxiliar Helder_Sequeira
+RP Auxiliar Ana_Cardona
+RP Auxiliar Maria_Joao_Duarte
+RP Auxiliar Maria_Labrusco
+RP Auxiliar Roberta_Miranda
+RP Auxiliar Catarina_Martins
+RP Auxiliar Cavaco_Silva
+MC Ricardo_Tomas
+Consulta
+Medicina Joao_Santos
+
+
