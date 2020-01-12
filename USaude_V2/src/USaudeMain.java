@@ -229,7 +229,7 @@ public class USaudeMain {
 			}
 		}
 	}
-	
+//	
 	private static void commandMC(UInterface ui,String[] command) {
 		List<String> newCommands = new ArrayList<String>();
 		for (String c: command) {
