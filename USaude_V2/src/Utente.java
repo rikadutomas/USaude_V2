@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Utente {
+public class Utente implements Serializable {
 	private String nome;
 	private String etaria;
 	private String familia;

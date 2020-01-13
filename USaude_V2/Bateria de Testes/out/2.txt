@@ -1,0 +1,53 @@
+Sem profissionais registados.
+Sem utentes registados.
+Sem famílias registadas.
+Profissional registado com sucesso.
+Profissional registado com sucesso.
+Profissional registado com sucesso.
+Profissional registado com sucesso.
+Profissional registado com sucesso.
+Profissional registado com sucesso.
+Utente registado com sucesso.
+Utente registado com sucesso.
+Utente registado com sucesso.
+Utente registado com sucesso.
+Familia registada com sucesso.
+Familia registada com sucesso.
+Utente inexistente.
+Utente associado a família.
+Utente associado a família.
+Utente associado a família.
+Medicina Alice
+Medicina Bob
+Enfermagem Bob
+Enfermagem Trudy
+Auxiliar James
+Auxiliar Phill
+Jovem Brad
+Jones Adulto Bill
+Smith Adulto Claire
+Jones Idoso Carl
+Jones
+Smith
+Serviço sem marcações.
+Serviço inexistente.
+Serviço inexistente.
+Serviço sem marcações.
+Utente sem cuidados de saúde marcados.
+Profissional de saúde sem marcações.
+Cuidados marcados com sucesso.
+Utente inexistente.
+Consulta Medicina Alice
+Consulta Medicina Alice
+PequenaCirurgia Medicina Bob
+PequenaCirurgia Enfermagem Trudy
+PequenaCirurgia Auxiliar James
+Enfermagem Enfermagem Bob
+Enfermagem Auxiliar Phill
+Utente inexistente.
+Utente sem cuidados de saúde marcados.
+Cuidados marcados com sucesso.
+Consulta Medicina Alice
+Enfermagem Enfermagem Bob
+Enfermagem Enfermagem Trudy
+Unidade de saúde gravada.

@@ -1,0 +1,36 @@
+Profissional registado com sucesso.
+Profissinal existente.
+Profissional registado com sucesso.
+Profissional registado com sucesso.
+Profissional registado com sucesso.
+Profissional registado com sucesso.
+Utente registado com sucesso.
+Utente registado com sucesso.
+Utente registado com sucesso.
+Utente existente.
+Utente registado com sucesso.
+Familia registada com sucesso.
+Familia registada com sucesso.
+Familia existente.
+Utente inexistente.
+Utente associado a família.
+Família inexistente.
+Utente associado a família.
+Utente associado a família.
+Utente não pertence a família.
+Utente desassociado de família.
+Instrução Inválida.
+Adulto Claire
+Família inexistente.
+Adulto Bill
+Medicina Alice
+Medicina Bob
+Enfermagem Bob
+Enfermagem Trudy
+Auxiliar James
+Jovem Brad
+Jones Adulto Bill
+Smith Adulto Claire
+Idoso Carl
+Jones
+Smith

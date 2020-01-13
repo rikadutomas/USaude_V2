@@ -1,0 +1,54 @@
+LP
+LU
+LF
+RP Medicina Alice
+RP Medicina Bob
+RP Enfermagem Bob
+RP Enfermagem Trudy
+RP Auxiliar Phill
+RP Auxiliar James
+RU Bill Adulto
+RU Brad Jovem
+RU Carl Idoso
+RU Claire Adulto
+RF Smith
+RF Jones
+AF Bob Smith
+AF Claire Smith
+AF Bill Jones
+AF Carl Jones
+LP
+LU
+LF
+LMS PequenaCirurgia
+LMS Medicinas
+LMS Medicina
+LMS Enfermagem
+LCU Bill
+LSP Medicina Alice
+MC Bill
+Consulta
+Medicina Alice
+PequenaCirurgia
+Medicina Bob
+Enfermagem Trudy
+Auxiliar James
+Enfermagem
+Auxiliar Phill
+Enfermagem Bob
+Consulta
+Medicina Alice
+
+LCU Ball
+LCU Bill
+LCU Marl
+LCU Carl
+MC Carl
+Enfermagem
+Enfermagem Trudy
+Enfermagem Bob
+Consulta
+Medicina Alice
+
+LCU Carl
+G

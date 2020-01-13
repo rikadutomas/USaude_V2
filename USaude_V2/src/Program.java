@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
-public class USaudeMain {
+public class Program {
 	public static void main(String[] args) {
 		UInterface ui = new UControl();
 		Scanner scanner = new Scanner(System.in);
@@ -55,17 +57,60 @@ public class USaudeMain {
 			    break;    		    
 			
 			case "MC":
-				commandMC(ui,command);
-			    break;    
-			    
-			    
-			default:
-				System.out.println("Instrução inválida.");	
+				commandMC(ui,command, scanner);
+			    break;
+
+			case "CC":
+				commandCC(ui,command);
+				break;
+
+			case "LCU":
+				commandLCU(ui,command);
+				break;
+
+			case "LCF":
+				commandLCF(ui,command);
+				break;
+
+			case "LSP":
+				commandLSP(ui,command);
+				break;
+
+			case "LMS":
+				commandLMS(ui,command);
+				break;
+
+			case "G":
+				commandG(ui);
+				break;
+
+			case "L":
+				commandL(ui);
+				break;
+
+				default:
+				System.out.println("Instrução Inválida.");	
 			}
 		}
 	}
-	
-// Chamada de Metodos
+
+	private static void commandL(UInterface ui) {
+		if (ui.isCarregado()){
+			System.out.println("Unidade de saúde carregada.");
+		} else {
+			System.out.println("Ocorreu um erro no carregamento.");
+		}
+	}
+
+	private static void commandG(UInterface ui) {
+		if (ui.isGravado()){
+			System.out.println("Unidade de saúde gravada.");
+		} else {
+			System.out.println("Ocorreu um erro na gravação.");
+		}
+	}
+
+	// Chamada de Metodos
 	private static void commandRP(UInterface ui, String[] command) {
 		try {
 			String categoria = command[1];
@@ -76,7 +121,7 @@ public class USaudeMain {
 				}
 				else {
 					ui.registarProfissional(categoria, nome);
-					System.out.println("Profissinal registado com sucesso.");
+					System.out.println("Profissional registado com sucesso.");
 				}
 			}
 			else {
@@ -84,7 +129,7 @@ public class USaudeMain {
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Instrução inválida.");
+			System.out.println("Instrução Inválida.");
 		}	
 	}
 	
@@ -118,7 +163,7 @@ public class USaudeMain {
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Instrução inválida");
+			System.out.println("Instrução Inválida.");
 		}	
 	}
 
@@ -137,15 +182,15 @@ public class USaudeMain {
 	private static void commandRF(UInterface ui, String[] command) {
 		try {
 			if (ui.isFamilia(command[1])) {
-				System.out.println("Família existente.");
+				System.out.println("Familia existente.");
 			}
 			else {
 				ui.registarFamilia(command[1]);
-				System.out.println("Família registada com sucesso.");
+				System.out.println("Familia registada com sucesso.");
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Instrução inválida.");
+			System.out.println("Instrução Inválida.");
 		}	
 	}
 
@@ -174,7 +219,7 @@ public class USaudeMain {
 		
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Instrução inválida.");
+			System.out.println("Instrução Inválida.");
 		}	
 	}
 
@@ -195,7 +240,7 @@ public class USaudeMain {
 			}				
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Instrução inválida.");
+			System.out.println("Instrução Inválida.");
 		}	
 		
 	}
@@ -206,19 +251,24 @@ public class USaudeMain {
 	
 	private static void commandMF(UInterface ui,String[] command) {
 		try {
+			if (ui.mostrarFamilia(command[1]).isEmpty()){
+				System.out.println("Família inexistente.");
+			}
 			for (String nomeFamilia: ui.mostrarFamilia(command[1])) {
-				if (nomeFamilia.equals("")){
-					System.out.println("Família inexistente.");
-				}
 				System.out.println(nomeFamilia);
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e) {
-				System.out.println("Instrução inválida.");
+				System.out.println("Instrução Inválida.");
 		}	
 	}
 	
 	private static void commandLF(UInterface ui) {
+		if(ui.listarFamilias().isEmpty()) {
+			System.out.println("Sem famílias registadas.");
+			return;
+		}
+
 		for (String nomeFamilia: ui.listarFamilias()) {
 			if (nomeFamilia.equals("")){
 				System.out.println("Família inexistente.");
@@ -228,30 +278,95 @@ public class USaudeMain {
 			}
 		}
 	}
-	
-	private static void commandMC(UInterface ui,String[] command) {
-		int flag = 0;
-		String nome = command[1];
-		flag = ui.iniciarMarcacao(nome);
-		//strSender();
-	}
-	
-	private static void strSender(UInterface ui) {
-		Scanner scanner = new Scanner(System.in);
+//	
+	private static void commandMC(UInterface ui,String[] command, Scanner scanner) {
+		List<String> newCommands = new ArrayList<String>(Arrays.asList(command));
+
+		//Scanner scanner = new Scanner(System.in);
 		while(scanner.hasNextLine()) {
 			String input = scanner.nextLine();
 			if(input.isBlank()) {
-				scanner.close();
+				//scanner.close();
 				break;
 			}
-			String command[] = input.split(" ");
-			ui.marcacao(command);
+			newCommands.add(input);
+
+		}
+		System.out.println(ui.marcacao(newCommands));
+	}
+
+	private static void commandCC(UInterface ui, String[] command) {
+		if (!ui.isUtente(command[1])) {
+			System.out.println("Utente inexistente.");
+			return;
+		}
+		/*if (!ui.temCuidados(command[1])) {
+			System.out.println("Utente sem cuidados de saúde marcados.");
+			return;
+		}
+		*/
+
+		//check if tem cuidados
+		ui.cancelarCuidados(command[1]);
+		System.out.println("Cuidados de saúde desmarcados com sucesso.");
+	}
+
+	private static void commandLCU(UInterface ui, String[] command) {
+		if (!ui.isUtente(command[1])){
+			System.out.println("Utente inexistente.");
+			return;
+		}
+		List<String> out = new ArrayList<>(ui.listarCuidados(command[1]));
+		if (out.isEmpty()) {
+			System.out.println("Utente sem cuidados de saúde marcados.");
+		}
+		for (String s: out) {
+			System.out.println(s);
 		}
 	}
-	
-	
-	
-	
+
+	private static void commandLCF(UInterface ui, String[] command) {
+		if (!ui.isFamilia(command[1])){
+			System.out.println("Família inexistente.");
+			return;
+		}
+		List<String> out = new ArrayList<>(ui.listarCuidadosPorFamilia(command[1]));
+		if (out.isEmpty()) {
+			System.out.println("Família sem cuidados de saúde marcados.");
+		}
+		for (String s : out) {
+			System.out.println(s);
+		}
+
+	}
+
+	private static void commandLSP(UInterface ui, String[] command) {
+		if (!ui.isProfissional(command[1], command[2])) {
+			System.out.println("Profissional de saúde inexistente.");
+			return;
+		}
+		List<String> out = ui.listarCuidadosAProfissional(command[2]);
+		if (out.isEmpty()) {
+			System.out.println("Profissional de saúde sem marcações.");
+		}
+		for (String s: out) {
+			System.out.println(s);
+		}
+	}
+
+	private static void commandLMS(UInterface ui, String[] command) {
+		if (!ui.isServico(command[1])){
+			System.out.println("Serviço inexistente.");
+			return;
+		}
+		List<String> out = ui.listarMarcacoesPorServico(command[1]);
+		if (out.isEmpty()) {
+			System.out.println("Serviço sem marcações.");
+		}
+		for (String s: out) {
+			System.out.println(s);
+		}
+	}
 	
 	
 	

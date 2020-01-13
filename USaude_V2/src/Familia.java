@@ -1,14 +1,15 @@
+import java.io.Serializable;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.ArrayList;
 
-public class Familia {
+public class Familia implements Serializable {
 	private String nomeFamilia;
-	private Utente utente;
 	private TreeMap<String,Utente> membros;
 	
 	
-	public Familia(String nomeFamilia) {
+	public Familia(String nf) {
+		nomeFamilia = nf;
 		membros = new TreeMap<String,Utente>();
 	}
 	
@@ -36,10 +37,6 @@ public class Familia {
 
 	public String getNomeFamilia() {
 		return nomeFamilia;
-	}
-
-	public Utente getUtente() {
-		return utente;
 	}
 
 	public TreeMap<String, Utente> getMembros() {
